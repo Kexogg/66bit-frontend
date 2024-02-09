@@ -1,11 +1,17 @@
 #header {
-    box-shadow: 0px 4px 8px 0px rgba(57, 113, 164, 0.25);
+    box-shadow: 0 4px 8px 0 rgba(57, 113, 164, 0.25);
     width: 100%;
-    height: 90px;
+    height: 6rem;
     display: flex;
     align-items: center;
     padding: 0 180px;
     justify-content: space-between;
+}
+
+#header nav {
+    display: flex;
+    align-items: center;
+    gap: 1rem
 }
 
 html[data-theme="dark"] #header {

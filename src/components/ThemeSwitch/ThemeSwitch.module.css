@@ -31,15 +31,17 @@
     background-color: white;
     transition: transform 0.3s ease;
     border-radius: 50%;
-    background-image: url("./ThemeSwitch-Dark.svg");
-    background-size: 0.9rem;
+    background-image: url("./ThemeSwitch-Light2.svg"), url("./ThemeSwitch-Light1.svg");
+    background-size: 0.9rem, 1.1rem;
     background-repeat: no-repeat;
     background-position: center;
+
 }
 
 .themeSwitch__input:checked + .themeSwitch__slider:before {
     transform: translateX(2rem) rotate(90deg);
-    background-image: url("./ThemeSwitch-Light2.svg"), url("./ThemeSwitch-Light1.svg");
-    background-size: 0.9rem, 1.1rem;
+    background-size: 0.9rem;
+    background-image: url("./ThemeSwitch-Dark.svg");
+
 
 }

@@ -5,6 +5,11 @@ import Home from './pages/Home/Home.tsx'
 import Profile from './pages/Profile/Profile.tsx'
 
 function App() {
+    document.documentElement.setAttribute(
+        'data-theme',
+        localStorage.getItem('theme') ?? 'light',
+    )
+
     return (
         <BrowserRouter>
             <Routes>
