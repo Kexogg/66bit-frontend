@@ -1,0 +1,17 @@
+#header {
+    box-shadow: 0px 4px 8px 0px rgba(57, 113, 164, 0.25);
+    background-color: #fff;
+    width: 100%;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    padding: 0 180px;
+    justify-content: space-between;
+}
+
+#header .logo {
+    width: 100px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}

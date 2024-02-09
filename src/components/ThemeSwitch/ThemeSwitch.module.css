@@ -1,0 +1,45 @@
+.themeSwitch__container {
+    width: 4rem;
+    height: 2rem;
+    display: inline-block;
+    position: relative;
+}
+
+.themeSwitch__input {
+    display: none;
+}
+
+.themeSwitch__slider {
+    position: absolute;
+    cursor: pointer;
+    background: var(--primary);
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25) inset;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 1rem;
+}
+
+.themeSwitch__slider:before {
+    position: absolute;
+    content: "";
+    height: 1.5rem;
+    width: 1.5rem;
+    left: 0.25rem;
+    bottom: 0.25rem;
+    background-color: white;
+    transition: transform 0.3s ease;
+    border-radius: 50%;
+    background-image: url("./ThemeSwitch-Dark.svg");
+    background-size: 0.9rem;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.themeSwitch__input:checked + .themeSwitch__slider:before {
+    transform: translateX(2rem) rotate(90deg);
+    background-image: url("./ThemeSwitch-Light2.svg"), url("./ThemeSwitch-Light1.svg");
+    background-size: 0.9rem, 1.1rem;
+
+}
