@@ -26,6 +26,7 @@
 }
 
 .dropdown__options {
+    z-index: 10;
     font-size: initial;
     font-weight: initial;
     line-height: initial;

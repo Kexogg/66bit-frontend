@@ -1,0 +1,19 @@
+.button {
+    padding: 12px 48px;
+    border: none;
+    background: var(--primary);
+    color: white;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 21px;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+}
+
+.button:hover {
+    background: var(--primary);
+    filter: brightness(1.1);
+}
+
+
