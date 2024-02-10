@@ -1,0 +1,43 @@
+.dropdown__label::after {
+    content: '';
+    background-size: 1rem;
+    background: url("Dropdown.svg") no-repeat center;
+    width: 1.2rem;
+    aspect-ratio: 1.5;
+    display: inline-block;
+    margin-left: 1rem;
+    pointer-events: none;
+}
+
+.dropdown__label:has(.dropdown__checkbox:checked)::after {
+    transform: rotate(180deg);
+}
+
+.dropdown__options {
+    display: none;
+    background: var(--background);
+    border-top: 1px solid var(--primary);
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    position: absolute;
+    list-style: none;
+    padding: 1rem;
+    gap: 1rem;
+    pointer-events: none;
+}
+
+.dropdown__options li {
+    pointer-events: auto;
+}
+
+.dropdown__options li label {
+    width: 100%;
+}
+
+.dropdown__checkbox {
+    display: none;
+}
+
+.dropdown__checkbox:checked + .dropdown__options {
+    display: flex;
+    flex-direction: column;
+}

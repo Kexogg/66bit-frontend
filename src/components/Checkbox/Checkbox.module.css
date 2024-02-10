@@ -1,0 +1,26 @@
+.checkbox__label {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    justify-content: space-between;
+}
+
+.checkbox__input {
+    cursor: pointer;
+    display: inline-block;
+    background: var(--background);
+    border: 1px solid var(--primary);
+    border-radius: 2px;
+    appearance: none;
+    width: 1.25rem;
+    aspect-ratio: 1;
+}
+
+.checkbox__input:checked {
+    background: var(--primary);
+    background-image: url('check.svg');
+    background-size: 80%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
