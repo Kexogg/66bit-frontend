@@ -15,12 +15,10 @@
     appearance: none;
     width: 1.25rem;
     aspect-ratio: 1;
+    transition: background 0.3s;
+    background: transparent no-repeat center;
 }
 
 .checkbox__input:checked {
-    background: var(--primary);
-    background-image: url('check.svg');
-    background-size: 80%;
-    background-repeat: no-repeat;
-    background-position: center;
+    background: var(--primary) url("check.svg") no-repeat center;
 }
