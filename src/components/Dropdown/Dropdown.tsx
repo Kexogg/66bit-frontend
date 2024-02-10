@@ -12,6 +12,8 @@ type DropdownProps = {
 
 const Dropdown = ({ options, label }: DropdownProps) => {
     const [open, setOpen] = useState(false)
+    //individual id of each dropdown
+    const [id] = useState(Date.now().toString())
     useEffect(() => {
         if (open) {
             document.addEventListener('click', () => setOpen(false))
@@ -23,7 +25,16 @@ const Dropdown = ({ options, label }: DropdownProps) => {
     return (
         <label
             className={styles.dropdown__label}
-            onClick={(e) => e.stopPropagation()}>
+            data-id={id}
+            onClick={(e) => {
+                //only allow one dropdown to be open at a time
+                if (
+                    !(e.target instanceof HTMLElement) ||
+                    e.target.dataset.id !== id ||
+                    open
+                )
+                    e.stopPropagation()
+            }}>
             {label}
             <input
                 type={'checkbox'}

@@ -3,6 +3,7 @@
     font-weight: 500;
     line-height: 23px;
     white-space: nowrap;
+    cursor: pointer;
 }
 
 .dropdown__label::after {
