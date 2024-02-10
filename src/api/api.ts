@@ -1,4 +1,5 @@
 import { useAxios } from '../hooks/useAxios.ts'
+import { IEmployee } from '../types/employee.ts'
 
 type GetEmployeesParams = {
     page: number
@@ -8,8 +9,9 @@ type GetEmployeesParams = {
     position?: string
     stack?: string[]
 }
+
 export const useGetEmployees = (params: GetEmployeesParams) => {
-    return useAxios({ url: 'Employee', params })
+    return useAxios<IEmployee[]>({ url: 'Employee', params })
 }
 
 type GetEmployeeByIdParams = {
