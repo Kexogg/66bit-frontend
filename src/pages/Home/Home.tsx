@@ -4,7 +4,10 @@ import styles from './Home.module.css'
 import Searchbar from '../../components/Searchbar/Searchbar.tsx'
 import Button from '../../components/Button/Button.tsx'
 import Chip from '../../components/Chip/Chip.tsx'
-import react from '@vitejs/plugin-react-swc'
+import { useGetEmployees } from '../../api/api.ts'
+import Table from '../../components/Table/Table.tsx'
+import { IEmployee } from '../../types/employee.ts'
+import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
     const links = [
@@ -31,6 +34,18 @@ const Home = () => {
             value: 'React',
         },
     ]
+
+    const [response, error, loading] = useGetEmployees({ page: 1, count: 10 })
+    const columns = [
+        { key: 'name', label: 'ФИО' },
+        { key: 'position', label: 'Должность' },
+        { key: 'phone', label: 'Телефон' },
+        { key: 'birthdate', label: 'Дата рождения' },
+    ]
+    const navigate = useNavigate()
+    const onRowClick = (row: IEmployee) => {
+        navigate(`/employee/${row.id}`)
+    }
     return (
         <main className={styles.main}>
             <Breadcrumbs links={links} />
@@ -75,6 +90,17 @@ const Home = () => {
                     </div>
                 </div>
             </section>
+            {loading ? (
+                <div>Loading...</div>
+            ) : (
+                response && (
+                    <Table
+                        columns={columns}
+                        rows={response}
+                        onRowClick={onRowClick}
+                    />
+                )
+            )}
         </main>
     )
 }
