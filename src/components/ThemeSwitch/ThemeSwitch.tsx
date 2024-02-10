@@ -10,20 +10,20 @@ const ThemeSwitch = () => {
     return (
         <label className={styles.themeSwitch__container}>
             <input
-                defaultChecked={selectedTheme === Theme.Dark}
+                defaultChecked={selectedTheme === Theme.Light}
                 onChange={(e) => {
                     if (e.target.checked) {
-                        document.documentElement.setAttribute(
-                            'data-theme',
-                            Theme.Dark,
-                        )
-                        localStorage.setItem('theme', Theme.Dark)
-                    } else {
                         document.documentElement.setAttribute(
                             'data-theme',
                             Theme.Light,
                         )
                         localStorage.setItem('theme', Theme.Light)
+                    } else {
+                        document.documentElement.setAttribute(
+                            'data-theme',
+                            Theme.Dark,
+                        )
+                        localStorage.setItem('theme', Theme.Dark)
                     }
                 }}
                 type={'checkbox'}

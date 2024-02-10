@@ -24,6 +24,8 @@ body {
   margin: 0;
   background: var(--background);
   font-family: Raleway, sans-serif;
+  font-feature-settings: "lnum";
+  color: var(--text);
   font-size: 18px;
   font-weight: 400;
   line-height: 21px;
@@ -34,4 +36,15 @@ body {
 a {
   text-decoration: none;
   color: var(--text);
+}
+
+.container {
+  width: 100%;
+  padding: 0 10rem;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 20px;
+  }
 }

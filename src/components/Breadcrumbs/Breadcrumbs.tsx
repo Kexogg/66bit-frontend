@@ -8,7 +8,9 @@ type BreadcrumbsProps = {
 }
 const Breadcrumbs = ({ links }: BreadcrumbsProps) => {
     return (
-        <nav aria-label="breadcrumb" className={styles.breadcrumbs__container}>
+        <nav
+            aria-label="breadcrumb"
+            className={'container ' + styles.breadcrumbs__container}>
             <ul className={styles.breadcrumbs__list}>
                 {links.map((link, index) => (
                     <li key={index} className={styles.breadcrumbs__item}>
