@@ -1,5 +1,11 @@
+.table__container {
+    margin-top: 20px;
+    overflow-x: scroll;
+}
+
 .table {
     border-collapse: collapse;
+    width: 100%;
 }
 
 .table tr:not(:last-child) {
@@ -18,4 +24,7 @@
 
 .table thead {
     color: var(--grey);
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 23px;
 }

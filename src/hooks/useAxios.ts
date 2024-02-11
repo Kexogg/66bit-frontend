@@ -31,7 +31,12 @@ export const useAxios = <T, D = unknown>(
             .finally(() => {
                 setLoading(false)
             })
-    }, [])
+    }, [
+        axiosParams.url,
+        axiosParams.params,
+        axiosParams.data,
+        axiosParams.method,
+    ])
 
     return [response, error, loading]
 }
