@@ -1,4 +1,5 @@
 import styles from './Breadcrumbs.module.css'
+import { Link } from 'react-router-dom'
 
 type BreadcrumbsProps = {
     links: {
@@ -14,11 +15,11 @@ const Breadcrumbs = ({ links }: BreadcrumbsProps) => {
             <ul className={styles.breadcrumbs__list}>
                 {links.map((link, index) => (
                     <li key={index} className={styles.breadcrumbs__item}>
-                        <a
-                            href={link.link.toString()}
+                        <Link
+                            to={link.link.toString()}
                             className={styles.breadcrumbs__link}>
                             {link.name}
-                        </a>
+                        </Link>
                     </li>
                 ))}
             </ul>
