@@ -9,11 +9,15 @@ import Table from '../../components/Table/Table.tsx'
 import { IEmployee } from '../../types/employee.ts'
 import { useNavigate } from 'react-router-dom'
 import { RefObject, useCallback, useEffect, useRef, useState } from 'react'
+import {
+    genderToString,
+    positionToString,
+    technologyToString,
+} from '../../types/types.ts'
 
 type filter = {
-    label: string
-    value: string
     key: string
+    value: string
 }
 
 const Home = () => {
@@ -22,7 +26,7 @@ const Home = () => {
         count: 10,
     })
     const navigate = useNavigate()
-
+    const [filters, setFilters] = useState<filter[]>([])
     const [isLastPage, setIsLastPage] = useState(false)
     const [response, error, loading] = useGetEmployees(params)
     const [employees, setEmployees] = useState<IEmployee[]>([])
@@ -34,6 +38,23 @@ const Home = () => {
             }
         }
     }, [isLastPage, response])
+
+    const handleFilterChange = ({
+        key,
+        value,
+    }: {
+        key: string
+        value: string[]
+    }) => {
+        setFilters((filters) => {
+            const newFilters = filters.filter((f) => f.key !== key)
+            for (const v of value) {
+                newFilters.push({ key, value: v })
+            }
+            return newFilters
+        })
+    }
+
     const observer = useRef<IntersectionObserver | null>(null)
     const lastEmployeeRef = useCallback(
         (node: Element) => {
@@ -50,7 +71,7 @@ const Home = () => {
         [loading, response, isLastPage],
     )
 
-    const links = [
+    const breadcrumbs = [
         {
             name: 'Главная',
             link: '/',
@@ -60,7 +81,6 @@ const Home = () => {
             link: '/',
         },
     ]
-    const [filters, setFilters] = useState<filter[]>([])
 
     const columns = [
         { key: 'name', label: 'ФИО' },
@@ -73,45 +93,92 @@ const Home = () => {
     }
     return (
         <main className={styles.main}>
-            <Breadcrumbs links={links} />
+            <Breadcrumbs links={breadcrumbs} />
             <section className={'container ' + styles.pagetitle__container}>
                 <h1 className={styles.pagetitle__header}>Список сотрудников</h1>
                 <div className={styles.pagetitle__controls}>
                     <Dropdown
                         label={'Должность'}
-                        options={[
-                            { value: '1', label: 'Разработчик' },
-                            { value: '2', label: 'Дизайнер' },
-                            { value: '3', label: 'Менеджер' },
-                        ]}
+                        onDropdownChange={(selected) => {
+                            handleFilterChange({
+                                key: 'position',
+                                value: selected,
+                            })
+                        }}
+                        options={Object.entries(positionToString).map(
+                            ([key, value]) => ({ value: key, label: value }),
+                        )}
                     />
                     <Dropdown
                         label={'Пол'}
-                        options={[
-                            { value: '1', label: 'По возрастанию' },
-                            { value: '2', label: 'По убыванию' },
-                        ]}
+                        onDropdownChange={(selected) => {
+                            handleFilterChange({
+                                key: 'gender',
+                                value: selected,
+                            })
+                        }}
+                        options={Object.entries(genderToString).map(
+                            ([key, value]) => ({ value: key, label: value }),
+                        )}
                     />
-                    <Dropdown options={[]} label={'Стек технологий'} />
+                    <Dropdown
+                        label={'Стек технологий'}
+                        onDropdownChange={(selected) => {
+                            handleFilterChange({
+                                key: 'stack',
+                                value: selected,
+                            })
+                        }}
+                        options={Object.entries(technologyToString).map(
+                            ([key, value]) => ({ value: key, label: value }),
+                        )}
+                    />
                 </div>
                 <div className={styles.pagetitle__search}>
-                    <Searchbar />
+                    <Searchbar
+                        onChange={(e) => {
+                            setFilters((f) => {
+                                const filters = f.filter(
+                                    (f) => f.key !== 'name',
+                                )
+                                if (e.target.value === '') return filters
+                                filters.push({
+                                    key: 'name',
+                                    value: e.target.value,
+                                })
+                                return filters
+                            })
+                        }}
+                    />
                 </div>
             </section>
             <section className={'container ' + styles.filters__container}>
                 <div className={styles.filters}>
                     Выбранные фильтры
                     <ul className={styles.filters__list}>
-                        {filters.map((filter) => (
-                            <Chip
-                                key={filter.label}
-                                label={filter.label}
-                                onClick={() => null}
-                            />
-                        ))}
+                        {filters
+                            .filter((f) => f.key !== 'name')
+                            .map((filter) => (
+                                <Chip
+                                    key={filter.value}
+                                    label={filter.value}
+                                    onClick={() => null}
+                                />
+                            ))}
                     </ul>
                     <div className={styles.filters__actions}>
-                        <Button label={'Найти'} />
+                        <Button
+                            label={'Найти'}
+                            onClick={() => {
+                                setIsLastPage(false)
+                                setEmployees([])
+                                setParams((p) => ({
+                                    ...p,
+                                    page: 1,
+                                    filters: filters,
+                                }))
+                            }}
+                        />
                     </div>
                 </div>
             </section>

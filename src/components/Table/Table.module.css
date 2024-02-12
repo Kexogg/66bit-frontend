@@ -1,5 +1,4 @@
 .table__container {
-    margin-top: 20px;
     overflow-x: scroll;
 }
 
@@ -27,4 +26,10 @@
     font-size: 20px;
     font-weight: 500;
     line-height: 23px;
+}
+
+@media (max-width: 768px) {
+    .table__container {
+        padding: 0 !important;
+    }
 }

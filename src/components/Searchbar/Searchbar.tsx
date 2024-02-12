@@ -1,11 +1,18 @@
 import styles from './Searchbar.module.css'
+import { DetailedHTMLProps, InputHTMLAttributes } from 'react'
 
-const Searchbar = () => {
+type SearchbarProps = DetailedHTMLProps<
+    InputHTMLAttributes<HTMLInputElement>,
+    HTMLInputElement
+>
+const Searchbar = ({ ...props }: SearchbarProps) => {
     return (
         <input
+            {...props}
             type="search"
             className={styles.searchbar}
-            placeholder={'Поиск'}></input>
+            placeholder={'Поиск'}
+        />
     )
 }
 

@@ -1,5 +1,5 @@
 .main {
-    padding-top: 28px;
+    padding: 28px 0;
     display: flex;
     flex-direction: column;
     gap: 28px;

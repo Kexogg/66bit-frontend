@@ -29,6 +29,7 @@
 
 .dropdown__options {
     z-index: 10;
+    pointer-events: none;
     font-size: initial;
     font-weight: initial;
     line-height: initial;
@@ -39,12 +40,11 @@
     position: absolute;
     list-style: none;
     padding: 1rem;
-    gap: 1rem;
-    pointer-events: none;
 }
 
 .dropdown__options li {
     pointer-events: auto;
+    padding: 0.5rem 0;
     color: var(--text);
 }
 

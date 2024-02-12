@@ -6,6 +6,12 @@
     align-items: center;
 }
 
+@media (max-width: 768px) {
+    #header nav a {
+        display: none;
+    }
+}
+
 .header__content {
     display: flex;
     justify-content: space-between;
