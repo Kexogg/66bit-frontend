@@ -1,4 +1,4 @@
-import styles from '../../pages/Home/Home.module.css'
+import styles from './SearchBox.module.css'
 import Dropdown from '../Dropdown/Dropdown.tsx'
 import { Gender, Position, Technology } from '../../types/types.ts'
 import Searchbar from '../Searchbar/Searchbar.tsx'
@@ -36,38 +36,42 @@ const SearchBox = ({
     ]
 
     return (
-        <section className={'container ' + styles.pagetitle__container}>
-            <h1 className={styles.pagetitle__header}>Список сотрудников</h1>
-            <div className={styles.pagetitle__controls}>
-                {dropdowns.map((dropdown) => (
-                    <Dropdown
-                        key={dropdown.key}
-                        label={dropdown.label}
-                        selected={
-                            filters
-                                .filter((f) => f.value in dropdown.optionsEnum)
-                                .map((f) => f.value) || []
-                        }
-                        selectCallback={(changedFilter) => {
-                            handleFilterChange(changedFilter)
+        <section className={'container'}>
+            <div className={styles.pagetitle__container}>
+                <h1 className={styles.pagetitle__header}>Список сотрудников</h1>
+                <div className={styles.pagetitle__controls}>
+                    {dropdowns.map((dropdown) => (
+                        <Dropdown
+                            key={dropdown.key}
+                            label={dropdown.label}
+                            selected={
+                                filters
+                                    .filter(
+                                        (f) => f.value in dropdown.optionsEnum,
+                                    )
+                                    .map((f) => f.value) || []
+                            }
+                            selectCallback={(changedFilter) => {
+                                handleFilterChange(changedFilter)
+                            }}
+                            options={Object.entries(dropdown.optionsEnum).map(
+                                ([key, value]) => ({
+                                    filterKey: dropdown.key,
+                                    label: value,
+                                    value: key,
+                                }),
+                            )}
+                        />
+                    ))}
+                </div>
+                <div className={styles.pagetitle__search}>
+                    <Searchbar
+                        defaultValue={query}
+                        onChange={(e) => {
+                            setQuery(e.target.value)
                         }}
-                        options={Object.entries(dropdown.optionsEnum).map(
-                            ([key, value]) => ({
-                                filterKey: dropdown.key,
-                                label: value,
-                                value: key,
-                            }),
-                        )}
                     />
-                ))}
-            </div>
-            <div className={styles.pagetitle__search}>
-                <Searchbar
-                    defaultValue={query}
-                    onChange={(e) => {
-                        setQuery(e.target.value)
-                    }}
-                />
+                </div>
             </div>
         </section>
     )

@@ -17,19 +17,33 @@
 }
 
 .table th, .table td {
-    padding: 12px 28px;
+    padding: 0.75rem 2rem;
+}
 
+.table tbody, table thead {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 23px;
 }
 
 .table thead {
     color: var(--grey);
-    font-size: 20px;
     font-weight: 500;
-    line-height: 23px;
 }
 
 @media (max-width: 768px) {
     .table__container {
         padding: 0 !important;
+    }
+    .table thead {
+        font-size: 10px;
+        line-height: 12px;
+    }
+    .table tbody {
+        font-size: 12px;
+        line-height: 14px;
+    }
+    .table th, .table td {
+        padding: 0.5rem 1rem;
     }
 }

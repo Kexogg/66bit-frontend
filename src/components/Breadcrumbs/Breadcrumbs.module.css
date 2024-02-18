@@ -2,13 +2,26 @@
     text-align: left;
     display: flex;
     list-style: none;
-    padding: 0;
+    padding: 0 1rem;
     margin: 0;
+    overflow: hidden;
 }
 
 .breadcrumbs__list li {
     display: flex;
     align-items: center;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.breadcrumbs__list li:last-child a {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.breadcrumbs__list li:not(:last-child) {
+    flex-shrink: 0
 }
 
 .breadcrumbs__list li:not(:last-child)::after {
@@ -25,7 +38,6 @@
 }
 
 .breadcrumbs__list li a {
-    font-size: 18px;
     font-weight: 500;
     line-height: 21px;
     letter-spacing: 0.02em;

@@ -22,3 +22,10 @@
 .checkbox__input:checked {
     background: var(--primary) url("check.svg") no-repeat center;
 }
+
+@media (max-width: 768px) {
+    .checkbox__label {
+        font-size: 12px;
+        line-height: 14px;
+    }
+}

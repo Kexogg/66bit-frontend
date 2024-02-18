@@ -45,12 +45,12 @@
 
 .dropdown__options li {
     pointer-events: auto;
-    padding: 0.5rem 0;
     color: var(--text);
 }
 
 .dropdown__options li label {
     width: 100%;
+    padding: 0.5rem 0;
 }
 
 .dropdown__checkbox {
@@ -60,4 +60,22 @@
 .dropdown__checkbox:checked + .dropdown__options {
     display: flex;
     flex-direction: column;
+}
+
+@media (max-width: 768px) {
+    .dropdown__label {
+        font-size: 12px;
+        line-height: 14px;
+    }
+    .dropdown__label::after {
+        width: 0.75rem;
+        margin-left: 0.25rem;
+        background-size: 0.75rem;
+    }
+    .dropdown__options {
+        padding: 20px;
+    }
+    .dropdown__options li label {
+        padding: 0.25rem 0;
+    }
 }

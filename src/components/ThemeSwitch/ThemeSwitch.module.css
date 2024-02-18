@@ -42,6 +42,22 @@
     transform: translateX(2rem) rotate(0deg);
     background-size: 1rem;
     background-image: url("./ThemeSwitch-Dark.svg");
+}
 
+@media (max-width: 768px) {
+    .themeSwitch__container {
+        width: 3rem;
+        height: 1.5rem;
+    }
 
+    .themeSwitch__slider:before {
+        height: 1.25rem;
+        width: 1.25rem;
+        left: 0.125rem;
+        bottom: 0.125rem;
+        background-size: 0.75rem, 1rem;
+    }
+    .themeSwitch__input:checked + .themeSwitch__slider:before {
+        transform: translateX(1.5rem) rotate(0deg);
+    }
 }

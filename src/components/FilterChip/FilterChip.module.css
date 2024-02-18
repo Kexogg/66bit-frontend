@@ -1,8 +1,8 @@
 .chip {
-    padding: 10px;
+    padding: 0.75rem;
     border-radius: 5px;
     display: inline-flex;
-    gap: 10px;
+    gap: 0.75rem;
     text-transform: lowercase;
     background: var(--background);
     font-size: 16px;
@@ -17,10 +17,17 @@
     color: black;
     border: none;
     cursor: pointer;
-    width: 10px;
-    height: 10px;
+    width: 0.6rem;
+    height: 0.6rem;
+    box-sizing: content-box;
     padding: 0;
     background: var(--text);
     mask: url("ChipClose.svg") no-repeat center;
+}
 
+@media (max-width: 768px) {
+    .chip {
+        font-size: 12px;
+        line-height: 14px;
+    }
 }

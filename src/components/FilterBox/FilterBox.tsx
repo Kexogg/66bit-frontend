@@ -16,16 +16,24 @@ const FilterBox = ({
     return (
         <section className={'container ' + styles.filters__container}>
             <div className={styles.filters}>
-                Выбранные фильтры
-                <ul className={styles.filters__list}>
-                    {filters.map((filter) => (
-                        <FilterChip
-                            key={filter.value}
-                            filter={filter}
-                            filterRemoveCallback={filterRemoveCallback}
-                        />
-                    ))}
-                </ul>
+                <span className={styles.filters__label}>
+                    Выбранные фильтры:
+                </span>
+                {filters.length === 0 ? (
+                    <span className={styles.filters__empty}>
+                        Фильтры не выбраны
+                    </span>
+                ) : (
+                    <ul className={styles.filters__list}>
+                        {filters.map((filter) => (
+                            <FilterChip
+                                key={filter.value}
+                                filter={filter}
+                                filterRemoveCallback={filterRemoveCallback}
+                            />
+                        ))}
+                    </ul>
+                )}
                 <div className={styles.filters__actions}>
                     <Button label={'Найти'} onClick={findCallback} />
                 </div>

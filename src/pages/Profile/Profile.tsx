@@ -10,10 +10,6 @@ const Profile = () => {
     })
     const breadcrumbs = [
         {
-            name: 'Главная',
-            link: '/',
-        },
-        {
             name: 'Список сотрудников',
             link: '/',
         },
@@ -49,7 +45,9 @@ const Profile = () => {
                 </div>
 
                 <hr className={styles.profile__divider} />
-                <h2>Основная информация</h2>
+                <h2 className={styles.profile__details__header}>
+                    Основная информация
+                </h2>
                 <table className={styles.profile__table}>
                     <tbody>
                         <tr>
