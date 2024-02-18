@@ -1,30 +1,30 @@
-import { useAxios } from '../hooks/useAxios.ts'
 import { IEmployee } from '../types/employee.ts'
-import { useMemo } from 'react'
+import { IFilter } from '../types/IFilter.ts'
+import { useFetch } from '../hooks/useFetch.ts'
 
+const baseURL = 'https://frontend-test-api.stk8s.66bit.ru/api/'
 type GetEmployeesParams = {
     page: number
     count: number
-    filters?: { key: string; value: string }[]
+    filters?: IFilter[]
 }
 
 export const useGetEmployees = (params: GetEmployeesParams) => {
-    const unpackedParams: { [key: string]: string | number } = {}
-    Object.assign(unpackedParams, params)
-    if (params.filters)
-        params.filters.forEach((f) => {
-            unpackedParams[f.key] = f.value
-        })
-    delete unpackedParams.filters
-    const requestParams = useMemo(() => {
-        return unpackedParams
-    }, [params])
-    return useAxios<IEmployee[]>({ url: 'Employee', params: requestParams })
+    const urlSearchParams = new URLSearchParams({
+        page: params.page.toString(),
+        count: params.count.toString(),
+    })
+    for (const filter of params.filters || []) {
+        urlSearchParams.append(filter.filterKey, filter.value)
+    }
+    return useFetch<IEmployee[]>(
+        `${baseURL}Employee?${urlSearchParams.toString()}`,
+    )
 }
 
 type GetEmployeeByIdParams = {
     id: number
 }
 export const useGetEmployeeById = (params: GetEmployeeByIdParams) => {
-    return useAxios<IEmployee>({ url: `Employee/${params.id}` })
+    return useFetch<IEmployee>(`${baseURL}Employee/${params.id}`)
 }

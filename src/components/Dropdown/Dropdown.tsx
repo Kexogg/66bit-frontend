@@ -1,41 +1,36 @@
 import styles from './Dropdown.module.css'
 import Checkbox from '../Checkbox/Checkbox.tsx'
 import { useEffect, useState } from 'react'
+import { IFilter } from '../../types/IFilter.ts'
 
 type DropdownProps = {
-    options: {
-        value: string
-        label: string
-    }[]
+    options: IFilter[]
     label: string
-    onDropdownChange?: (value: string[]) => void
+    selected: string[]
+    selectCallback: (selected: IFilter) => void
 }
 
-const Dropdown = ({ options, label, onDropdownChange }: DropdownProps) => {
+const Dropdown = ({
+    options,
+    label,
+    selected,
+    selectCallback,
+}: DropdownProps) => {
     const [open, setOpen] = useState(false)
-    //individual id of each dropdown
-    const [id] = useState(Date.now().toString())
-    const [selected, setSelected] = useState<string[]>([])
+    const [dropdownId] = useState(Date.now().toString())
     useEffect(() => {
-        if (onDropdownChange) onDropdownChange(selected)
-    }, [selected])
-    useEffect(() => {
-        if (open) {
-            document.addEventListener('click', () => setOpen(false))
-        }
-        return () => {
-            document.removeEventListener('click', () => setOpen(false))
-        }
+        if (open) document.addEventListener('click', () => setOpen(false))
+        return document.removeEventListener('click', () => setOpen(false))
     }, [open])
     return (
         <label
             className={styles.dropdown__label}
-            data-id={id}
+            data-id={dropdownId}
             onClick={(e) => {
                 // allow only one dropdown to be open at a time
                 if (
                     !(e.target instanceof HTMLElement) ||
-                    e.target.dataset.id !== id ||
+                    e.target.dataset.id !== dropdownId ||
                     open
                 )
                     e.stopPropagation()
@@ -53,18 +48,13 @@ const Dropdown = ({ options, label, onDropdownChange }: DropdownProps) => {
                 {options.map((option) => (
                     <li key={option.value}>
                         <Checkbox
+                            checked={selected.some(
+                                (selectedOption) =>
+                                    selectedOption === option.value,
+                            )}
                             label={option.label}
-                            onChange={() =>
-                                setSelected((s) => {
-                                    if (s.includes(option.value)) {
-                                        return s.filter(
-                                            (i) => i !== option.value,
-                                        )
-                                    } else {
-                                        return [...s, option.value]
-                                    }
-                                })
-                            }
+                            value={option.value}
+                            onChange={() => selectCallback(option)}
                         />
                     </li>
                 ))}
