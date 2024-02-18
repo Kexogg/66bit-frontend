@@ -30,7 +30,7 @@
     }
     .pagetitle__controls {
         flex-wrap: wrap;
-        gap: 0.5rem;
+        gap: 1rem;
     }
     .pagetitle__header {
         margin: 0 0 .5rem;

@@ -25,24 +25,24 @@ const Profile = () => {
         <main className={styles.profile__container}>
             <Breadcrumbs links={breadcrumbs} />
             <section className={'container'}>
-                <div className={styles.profile__header}>
+                <article className={styles.profile__header}>
                     <img
                         className={styles.profile__image}
                         src={response?.photo}
                         alt={response?.name}
                     />
-                    <article>
+                    <div className={styles.profile__title}>
                         <h1>{response?.name}</h1>
                         <h2>{response?.position}</h2>
-                        {response?.stack && (
-                            <ul className={styles.profile__skills}>
-                                {response?.stack.map((tech) => (
-                                    <li key={tech}>{tech}</li>
-                                ))}
-                            </ul>
-                        )}
-                    </article>
-                </div>
+                    </div>
+                    {response?.stack && (
+                        <ul className={styles.profile__skills}>
+                            {response?.stack.map((tech) => (
+                                <li key={tech}>{tech}</li>
+                            ))}
+                        </ul>
+                    )}
+                </article>
 
                 <hr className={styles.profile__divider} />
                 <h2 className={styles.profile__details__header}>
