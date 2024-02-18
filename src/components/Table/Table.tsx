@@ -1,10 +1,11 @@
 import styles from './Table.module.css'
+import { RefObject } from 'react'
 
 type TableProps<T> = {
     columns: { key: string; label: string }[]
     rows: T[]
     onRowClick?: (row: T) => void
-    lastRowRef?: React.RefObject<HTMLTableRowElement>
+    lastRowRef?: RefObject<HTMLTableRowElement>
 }
 
 const Table = <T = unknown,>({
