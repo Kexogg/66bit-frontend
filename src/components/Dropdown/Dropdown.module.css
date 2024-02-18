@@ -29,7 +29,8 @@
 
 .dropdown__options {
     z-index: 10;
-    pointer-events: none;
+    /*pointer-events: none;*/
+    cursor: initial;
     font-size: initial;
     font-weight: initial;
     line-height: initial;

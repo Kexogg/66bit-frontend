@@ -20,7 +20,7 @@ const Dropdown = ({
     const [dropdownId] = useState(Date.now().toString())
     useEffect(() => {
         if (open) document.addEventListener('click', () => setOpen(false))
-        return document.removeEventListener('click', () => setOpen(false))
+        return () => document.removeEventListener('click', () => setOpen(false))
     }, [open])
     return (
         <label
@@ -34,6 +34,10 @@ const Dropdown = ({
                     open
                 )
                     e.stopPropagation()
+                // prevent clicking on ul from modifying input
+                if (e.target instanceof HTMLUListElement) {
+                    e.preventDefault()
+                }
             }}>
             {label}
             <input
@@ -42,9 +46,7 @@ const Dropdown = ({
                 onChange={(e) => setOpen(e.target.checked)}
                 checked={open}
             />
-            <ul
-                className={styles.dropdown__options}
-                onClick={(e) => e.stopPropagation()}>
+            <ul className={styles.dropdown__options}>
                 {options.map((option) => (
                     <li key={option.value}>
                         <Checkbox
