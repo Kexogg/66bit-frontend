@@ -18,9 +18,8 @@ const Profile = () => {
             link: '/employee/' + id,
         },
     ]
-    if (loading) return <div>loading...</div>
-    if (error) return <div>error</div>
-
+    if (error) return <div>{error.message}</div>
+    if (loading) return null
     return (
         <main className={styles.profile__container}>
             <Breadcrumbs links={breadcrumbs} />
