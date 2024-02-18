@@ -8,12 +8,14 @@ type SearchBoxProps = {
     filters: IFilter[]
     handleFilterChange: (filters: IFilter) => void
     setQuery: (query: string) => void
+    query: string
 }
 
 const SearchBox = ({
     filters,
     handleFilterChange,
     setQuery,
+    query,
 }: SearchBoxProps) => {
     const dropdowns = [
         {
@@ -61,6 +63,7 @@ const SearchBox = ({
             </div>
             <div className={styles.pagetitle__search}>
                 <Searchbar
+                    defaultValue={query}
                     onChange={(e) => {
                         setQuery(e.target.value)
                     }}
