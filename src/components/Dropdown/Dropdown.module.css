@@ -8,8 +8,8 @@
 
 .dropdown__label::after {
     content: '';
-    background-size: 1rem;
     background: url("Dropdown.svg") no-repeat center;
+    background-size: 1rem;
     width: 1.15rem;
     aspect-ratio: 1.5;
     display: inline-block;
@@ -19,17 +19,8 @@
     transition: transform 0.3s;
 }
 
-.dropdown__label:has(.dropdown__checkbox:checked)::after {
-    transform: rotate(0deg);
-}
-
-.dropdown__label:has(.dropdown__checkbox:checked) {
-    color: var(--primary);
-}
-
 .dropdown__options {
     z-index: 10;
-    /*pointer-events: none;*/
     cursor: initial;
     font-size: initial;
     font-weight: initial;
