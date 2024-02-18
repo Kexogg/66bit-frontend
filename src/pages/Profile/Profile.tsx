@@ -6,7 +6,7 @@ import styles from './Profile.module.css'
 const Profile = () => {
     const { id } = useParams()
     const [response, error, loading] = useGetEmployeeById({
-        id: Number.parseInt(id || '0'),
+        id: Number.parseInt(id ?? '0'),
     })
     const breadcrumbs = [
         {
@@ -14,7 +14,7 @@ const Profile = () => {
             link: '/',
         },
         {
-            name: response?.name || 'Профиль сотрудника',
+            name: response?.name ?? 'Профиль сотрудника',
             link: '/employee/' + id,
         },
     ]

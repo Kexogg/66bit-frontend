@@ -6,7 +6,7 @@ enum Theme {
 }
 
 const ThemeSwitch = () => {
-    const selectedTheme = localStorage.getItem('theme')
+    const selectedTheme = localStorage.getItem('theme') ?? Theme.Light
     return (
         <label className={styles.themeSwitch__container}>
             <input
